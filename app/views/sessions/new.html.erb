@@ -1,0 +1,12 @@
+<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+<div class="card"style="width: 20rem;margin-left: 30rem;">
+  <div class="card-header"><h1><i class="fab fa-instagram" style="color:red"></i>Instagram</h1></div>
+  <div class="card-body"><%= f.label :email %>
+  <%= f.email_field :email,class:"form-control" ,style:"width: 15rem;" %>
+  <%= f.label :password %>
+  <%= f.password_field :password,class:"form-control", style:"width: 15rem;" %>
+</div> 
+  <div class="card-footer">  <%= f.submit "Log in",class:"btn btn-primary", style:"width: 15rem;"%>
+  <% end %></div>
+  <div class="card-footer" style="margin-left: 2px;";><p>Don't have an account?<%= link_to "Sign up", new_user_path %></p></div>
+</div>

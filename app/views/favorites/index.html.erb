@@ -1,0 +1,15 @@
+<div class="card"style="width: 20rem;margin-left: 30rem;">
+<h2><i class="fab fa-instagram" style="color:red"> Instagram</i></h2>
+  <div class="card-header"><h1 style:"color:green"><%= link_to 'Home', posts_path,class:"col-sm-3",class:"btn btn-secondary" %><br>  All favorites</h1></div>
+  <div class="card-body"><% @favorites.each do |favo| %>
+    <% if logged_in? %>
+    <% if favo.user_id == current_user.id%>
+   <p>
+  from:<%= favo.user.email %>
+   </p>
+   <p><%= favo.post.content %></p>
+   <p><%= image_tag favo.post.image.url, class:"image" %></p></div>
+<% end %>
+<% end %>
+<% end %>
+</div>

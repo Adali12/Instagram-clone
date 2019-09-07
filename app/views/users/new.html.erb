@@ -1,0 +1,17 @@
+
+<div class="card"style="width: 20rem;margin-left: 30rem;">
+  <div class="card-header"><h1><i class="fab fa-instagram" style="color:red"></i>Instagram
+  Sign up</h1></div>
+  <div class="card-body"><%= render 'form', user: @user %></div> 
+  <div class="card-footer">
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+  <% end %>
+  <% if logged_in? %>
+    <%= link_to "Profile", user_path(current_user.id) %>
+    <%= link_to "Logout", session_path(current_user.id), method: :delete %>
+  <% else %>
+  <p>do you have account?<%= link_to "Login", new_session_path,style:"color:blue;" %></p> 
+  <% end %>
+  </div>
+</div>

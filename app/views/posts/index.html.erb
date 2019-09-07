@@ -1,0 +1,44 @@
+<div class="card"style="width: 17rem;margin-left:7px;">
+<div class="card-header"><%= link_to "Profile", user_path(current_user.id),class:"col-sm-3",class:"btn btn-secondary" %>
+<%= link_to "Logout", session_path(current_user.id), method: :delete ,class:"col-sm-3",class:"btn btn-secondary"%></div>
+<div class="card-header"><i class="fab fa-instagram" style=" color:red;">instagram</i><p style="color:black">profile picture</p></div>
+<div class="card-body"><% if logged_in? %>
+<% check = 0, links='1', id=nil %>
+<% @profile.each do |profile| %>
+<% if current_user.id == profile.user_id %>
+  <% check = 1%>
+  <%links = profile.image.url %>
+  <%id =profile%>
+<% end %>
+<% end %>
+<% if check==1 %>
+<p><%= image_tag links,size:"50x60", class:"rounded" unless links.blank? %></p>
+</div>
+<div class="card-footer"><%= link_to 'Edit ', edit_profile_path(id),class:"col-sm-3",class:"btn btn-secondary"%>
+<%= link_to 'remove ', id, method: :delete, data: { confirm: 'Are you sure?' },class:"col-sm-3",class:"btn btn-danger" %>
+<% else %>
+<p><i class="fal fa-user"></i></p>
+<%= link_to 'upload profile ', new_profile_path ,class:"btn btn-secondary"%>
+<% end %>
+<% end %>
+</div>
+<p style=" color:blue;">click her for list of your:?<%= link_to 'Favorites', favorites_path ,class:"btn btn-secondary"%></p></div>
+<div class="card index-card"style="width: 25rem;margin-left: 30rem;margin-top: -23.5rem;">
+<h2> wellcome  to Instagram</h2>
+<i class="fab fa-instagram" style="color:red">instagram</i>
+<div class="card-header"><%= link_to 'Create new Post', new_post_path,class:"btn btn-dark" %></div>
+<div class="card-header"><h1><i class="fab fa-instagram" style="color:red"></h1>HOME</i></div>
+    <% @posts.each do |post| %>
+      <div class="card-body"><u><%= post.user.name %></u><br><%= post.content %><br>
+      <%= image_tag post.image.url(),size:"290x300" %></div>
+        <div class="card-footer"><%= link_to 'Show', post ,class:"col-sm-3",class:"btn btn-secondary"%>
+        <% if logged_in? %>
+       <% if current_user.id == post.user.id %><%= link_to 'Edit', edit_post_path(post),class:"col-sm-3",class:"btn btn-secondary" %>
+        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' },class:"col-sm-3",class:"btn btn-secondary" %></div>
+        <hr>
+    <% end %>
+    <%end%>
+    <%end%>
+</div>
+
+

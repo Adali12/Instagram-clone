@@ -1,0 +1,25 @@
+
+<div class="card" style="width: 20rem;margin-left: 30rem;">
+<h2><i class="fab fa-instagram" style="color:red"> Instagram</i></h2>
+<div class="card-header"><p><i class="fab fa-instagram" style="color:red"></i>User Name :<%= @post.user.name %></p></div>
+  <div class="card-body"><p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @post.image.url() ,size:"290x300"%>
+</p></div>
+<div class="card-footer"><%= link_to 'Edit', edit_post_path(@post),class:"col-sm-3",class:"btn btn-secondary" %>
+<%= link_to 'Home', posts_path,class:"col-sm-3",class:"btn btn-secondary" %></div>
+<%if logged_in?%>
+<% unless @post.user_id == current_user.id %>
+<% if @favorite.present? %>
+<div class="card-footer"><%= link_to 'Cancel favorite', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+<% else %>
+<%= link_to 'Make it a favorite', favorites_path(post_id: @post.id), method: :post, class: 'btn btn-primary' %></div>
+<% end %>
+<% end %>
+<%end %>
+</div>
+
